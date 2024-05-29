@@ -1,0 +1,30 @@
+C:\Users\Matve\source\repos\WindowsFormsApp11\bin\Debug\WindowsFormsApp11.exe.config
+C:\Users\Matve\source\repos\WindowsFormsApp11\bin\Debug\WindowsFormsApp11.exe
+C:\Users\Matve\source\repos\WindowsFormsApp11\bin\Debug\WindowsFormsApp11.pdb
+C:\Users\Matve\source\repos\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.csproj.AssemblyReference.cache
+C:\Users\Matve\source\repos\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.Form1.resources
+C:\Users\Matve\source\repos\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.Properties.Resources.resources
+C:\Users\Matve\source\repos\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.csproj.GenerateResource.cache
+C:\Users\Matve\source\repos\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.csproj.CoreCompileInputs.cache
+C:\Users\Matve\source\repos\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.exe
+C:\Users\Matve\source\repos\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.pdb
+C:\Users\Matve\OneDrive\Рабочий стол\=)\теория автоматов\WindowsFormsApp11\bin\Debug\WindowsFormsApp11.exe.config
+C:\Users\Matve\OneDrive\Рабочий стол\=)\теория автоматов\WindowsFormsApp11\bin\Debug\WindowsFormsApp11.exe
+C:\Users\Matve\OneDrive\Рабочий стол\=)\теория автоматов\WindowsFormsApp11\bin\Debug\WindowsFormsApp11.pdb
+C:\Users\Matve\OneDrive\Рабочий стол\=)\теория автоматов\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.csproj.AssemblyReference.cache
+C:\Users\Matve\OneDrive\Рабочий стол\=)\теория автоматов\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.Form1.resources
+C:\Users\Matve\OneDrive\Рабочий стол\=)\теория автоматов\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.Properties.Resources.resources
+C:\Users\Matve\OneDrive\Рабочий стол\=)\теория автоматов\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.csproj.GenerateResource.cache
+C:\Users\Matve\OneDrive\Рабочий стол\=)\теория автоматов\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.csproj.CoreCompileInputs.cache
+C:\Users\Matve\OneDrive\Рабочий стол\=)\теория автоматов\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.exe
+C:\Users\Matve\OneDrive\Рабочий стол\=)\теория автоматов\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.pdb
+C:\Users\Matve\Desktop\=)\теория автоматов\WindowsFormsApp11\bin\Debug\WindowsFormsApp11.exe.config
+C:\Users\Matve\Desktop\=)\теория автоматов\WindowsFormsApp11\bin\Debug\WindowsFormsApp11.exe
+C:\Users\Matve\Desktop\=)\теория автоматов\WindowsFormsApp11\bin\Debug\WindowsFormsApp11.pdb
+C:\Users\Matve\Desktop\=)\теория автоматов\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.csproj.AssemblyReference.cache
+C:\Users\Matve\Desktop\=)\теория автоматов\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.Form1.resources
+C:\Users\Matve\Desktop\=)\теория автоматов\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.Properties.Resources.resources
+C:\Users\Matve\Desktop\=)\теория автоматов\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.csproj.GenerateResource.cache
+C:\Users\Matve\Desktop\=)\теория автоматов\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.csproj.CoreCompileInputs.cache
+C:\Users\Matve\Desktop\=)\теория автоматов\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.exe
+C:\Users\Matve\Desktop\=)\теория автоматов\WindowsFormsApp11\obj\Debug\WindowsFormsApp11.pdb
