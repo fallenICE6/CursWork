@@ -9,67 +9,57 @@ namespace WindowsFormsApp11
     internal class BauerZamelzon
     {
         List<Token> tokens;
-        string str = "";
-        bool flag = true;
-        int i = 0;
-        int counte = 0;
+        int index = 0;
+        int Ecount = 0;
+        int count = 0;
         Stack<Token> temp = new Stack<Token>();
         Stack<Token> E = new Stack<Token>();
         Stack<Token> T = new Stack<Token>();
+        string str = "";
+        bool start = true;
 
         public BauerZamelzon(List<Token> tokens)
         {
             this.tokens = tokens;
-            while (i < tokens.Count - 1)
+            while (index < tokens.Count - 1)
             {
-                i++;
-                if (tokens[i].Type == TokenType.EQUAL)
+                index++;
+                if (tokens[index].Type == TokenType.EQUAL)
                 {
-                    i++;
-                    Expr();
-                    flag = true;
-                    //str += Matr() + "\r\n";
+                    index++;
+                    Expression();
+                    start = true;
+                    str += Matrix() + "\r\n";
+                    count = 0;
+                    Ecount = 0;
                 }
             }
         }
-        void K()
+        void Expression()
         {
-            if (E.Count <= 1)
+            while (start)
             {
-                throw new Exception("Стек пуст");
-            }
-            temp.Push(E.Pop());
-            temp.Push(E.Pop());
-            while (temp.Count > 0)
-            {
-                E.Push(temp.Pop());
-            }
-        }
-        void Expr()
-        {
-            while (flag)
-            {
-                switch (tokens[i].Type)
+                switch (tokens[index].Type)
                 {
                     case TokenType.INDENTIFIER:
-                        E.Push(tokens[i++]);
-                        counte++;
+                        E.Push(tokens[index++]);
+                        Ecount++;
                         break;
                     case TokenType.LITERAL:
-                        E.Push(tokens[i++]);
-                        counte++;
+                        E.Push(tokens[index++]);
+                        Ecount++;
                         break;
 
                     case TokenType.NEWSTRING:
                         if (T.Count == 0)
                         {
-                            flag = false;
+                            start = false;
                         }
                         else if (T.Peek().Type == TokenType.LPAR)
                         {
-                            throw new Exception("2");
+                            throw new Exception("Ошибка в операции выражения!");
                         }
-                        else if(T.Peek().Type == TokenType.PLUS || T.Peek().Type == TokenType.MINUS 
+                        else if (T.Peek().Type == TokenType.PLUS || T.Peek().Type == TokenType.MINUS
                             || T.Peek().Type == TokenType.MULTIPLICATION || T.Peek().Type == TokenType.DIVIDE)
                         {
                             temp.Push(T.Pop());
@@ -81,25 +71,24 @@ namespace WindowsFormsApp11
                         }
                         break;
                     case TokenType.LPAR:
-                        if(T.Peek().Type == TokenType.PLUS || T.Peek().Type == TokenType.MINUS 
-                            || T.Peek().Type == TokenType.MULTIPLICATION || T.Peek().Type == TokenType.DIVIDE || T.Peek().Type == TokenType.LPAR || T.Count == 0)
+                        if (T.Peek().Type == TokenType.PLUS || T.Peek().Type == TokenType.MINUS || T.Peek().Type == TokenType.MULTIPLICATION || T.Peek().Type == TokenType.DIVIDE || T.Peek().Type == TokenType.LPAR || T.Count == 0)
                         {
-                            T.Push(tokens[i++]);
+                            T.Push(tokens[index++]);
                         }
                         else
                         {
-                            throw new Exception("Ошибка в выражении!");
+                            throw new Exception("Ошибка в операции выражения!");
                         }
                         break;
                     case TokenType.RPAR:
                         if (T.Count == 0)
                         {
-                            throw new Exception("Ошибка в выражении!");
+                            throw new Exception("Ошибка в операции выражения!");
                         }
-                        else if (T.Peek().Type == TokenType.RPAR)
+                        else if (T.Peek().Type == TokenType.LPAR)
                         {
                             T.Pop();
-                            i++;
+                            index++;
                         }
                         else if (T.Peek().Type == TokenType.PLUS || T.Peek().Type == TokenType.MINUS
                             || T.Peek().Type == TokenType.MULTIPLICATION || T.Peek().Type == TokenType.DIVIDE)
@@ -107,19 +96,23 @@ namespace WindowsFormsApp11
                             temp.Push(T.Pop());
                             K();
                         }
+                        else
+                        {
+                            throw new Exception("Ошибка в выражении!");
+                        }
                         break;
                     default:
-                        if (tokens[i].Type == TokenType.PLUS || tokens[i].Type == TokenType.MINUS)
+                        if (tokens[index].Type == TokenType.PLUS || tokens[index].Type == TokenType.MINUS)
                         {
-                            if (T.Count == 0)
+                            if (T.Count == 0 || T.Peek().Type == TokenType.LPAR)
                             {
-                                T.Push(tokens[i++]);
+                                T.Push(tokens[index++]);
                             }
                             else if (T.Peek().Type == TokenType.PLUS || T.Peek().Type == TokenType.MINUS)
                             {
                                 temp.Push(T.Pop());
                                 K();
-                                T.Push(tokens[i++]);
+                                T.Push(tokens[index++]);
                             }
                             else if (T.Peek().Type == TokenType.MULTIPLICATION || T.Peek().Type == TokenType.DIVIDE)
                             {
@@ -128,86 +121,105 @@ namespace WindowsFormsApp11
                             }
                             else
                             {
-                                throw new Exception("abd");
+                                throw new Exception("Ошибка в операции выражения!");
                             }
                         }
-                        else if (tokens[i].Type == TokenType.MULTIPLICATION
-                        || tokens[i].Type == TokenType.DIVIDE)
+                        else if (tokens[index].Type == TokenType.MULTIPLICATION
+                        || tokens[index].Type == TokenType.DIVIDE)
                         {
                             if (T.Count == 0 || T.Peek().Type == TokenType.PLUS
-                            || T.Peek().Type == TokenType.MINUS)
+                            || T.Peek().Type == TokenType.MINUS || T.Peek().Type == TokenType.LPAR)
                             {
-                                T.Push(tokens[i++]);
+                                T.Push(tokens[index++]);
                             }
                             else if (T.Peek().Type == TokenType.MULTIPLICATION || T.Peek().Type == TokenType.DIVIDE)
                             {
                                 temp.Push(T.Pop());
                                 K();
-                                T.Push(tokens[i++]);
+                                T.Push(tokens[index++]);
                             }
                             else
                             {
-                                throw new Exception("2");
+                                throw new Exception("Ошибка в операции выражения!");
                             }
                         }
                         else
                         {
-                            throw new Exception("1");
+                            throw new Exception("Ошибка в выражении!");
                         }
                         break;
                 }
             }
         }
-        //string Matr()
-        //{
-        //    while (E.Count > 0)
-        //    {
-        //        tmp.Push(E.Pop());
-        //        if (tmp.Peek().Type != TokenType.ID && tmp.Peek().Type != TokenType.LITERAL) { count++; }
-        //    }
-        //    if (counte - count != 1)
-        //    {
-        //        throw new Exception("Отсутствует логический оператор или операнд");
-        //    }
-        //    string str = "", v;
-        //    string[] s = new string[tmp.Count];
-        //    Token t;
-        //    int i = 1, j = 0;
-        //    while (tmp.Count > 0)
-        //    {
-        //        t = tmp.Pop();
-        //        if (t.Type == TokenType.LESS || t.Type == TokenType.MORE || t.Type == TokenType.AND
-        //            || t.Type == TokenType.OR)
-        //        {
-        //            if (j == 1)
-        //            {
-        //                throw new Exception("Отсутствует операнд");
-        //            }
-        //            if (t.Type == TokenType.LESS)
-        //            {
-        //                v = "M" + i.ToString() + ": " + "<" + s[j - 2] + s[j - 1];
-        //            }
-        //            else if (t.Type == TokenType.MORE)
-        //            {
-        //                v = "M" + i.ToString() + ": " + ">" + s[j - 2] + s[j - 1];
-        //            }
-        //            else
-        //            {
-        //                v = "M" + i.ToString() + ": " + t.Type.ToString() + s[j - 2] + s[j - 1];
-        //            }
-        //            s[j - 2] = "M" + i++.ToString();
-        //            s[j - 1] = null;
-        //            j--;
-        //            str += v + "\r\n";
-        //        }
-        //        else
-        //        { s[j++] = t.Value; }
-        //    }
-        //    return str;
-        //}
-        //public string Info()
-        //{
-        //    return str;
-        //}
+        void K()
+        {
+            if (E.Count <= 1)
+            {
+                throw new Exception("Отсутствует операнд!");
+            }
+            temp.Push(E.Pop());
+            temp.Push(E.Pop());
+            while (temp.Count > 0)
+            {
+                E.Push(temp.Pop());
+            }
+        }
+        public string MatrixShow()
+        {
+            return str;
+        }
+        string Matrix()
+        {
+            while (E.Count > 0)
+            {
+                temp.Push(E.Pop());
+                if (temp.Peek().Type != TokenType.INDENTIFIER && temp.Peek().Type != TokenType.LITERAL) { count++; }
+            }
+            if (Ecount - count != 1)
+            {
+                throw new Exception("Отсутствует логический оператор или операнд!");
+            }
+            string str = "";
+            string str2 = "";
+            string[] s = new string[temp.Count];
+            Token token;
+            int i = 1, j = 0;
+            while (temp.Count > 0)
+            {
+                token = temp.Pop();
+                if (token.Type == TokenType.PLUS || token.Type == TokenType.MINUS || token.Type == TokenType.MULTIPLICATION
+                    || token.Type == TokenType.DIVIDE)
+                {
+                    if (j == 1)
+                    {
+                        throw new Exception("Отсутствует операнд!");
+                    }
+                    if (token.Type == TokenType.PLUS)
+                    {
+                        str2 = "M" + i.ToString() + ": " + "+" + s[j - 2] + s[j - 1];
+                    }
+                    else if (token.Type == TokenType.MINUS)
+                    {
+                        str2 = "M" + i.ToString() + ": " + "-" + s[j - 2] + s[j - 1];
+                    }
+                    else if (token.Type == TokenType.MULTIPLICATION)
+                    {
+                        str2 = "M" + i.ToString() + ": " + "*" + s[j - 2] + s[j - 1];
+                    }
+                    else if (token.Type == TokenType.DIVIDE)
+                    {
+                        str2 = "M" + i.ToString() + ": " + "/" + s[j - 2] + s[j - 1];
+                    }
+                    s[j - 2] = "M" + i++.ToString();
+                    s[j - 1] = null;
+                    j--;
+                    str += str2 + "\r\n";
+                }
+                else
+                { s[j++] = token.Value; }
+            }
+            return str;
+        }
+        
     }
-    }
+}

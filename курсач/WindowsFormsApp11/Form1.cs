@@ -68,24 +68,29 @@ namespace WindowsFormsApp11
         private void button3_Click(object sender, EventArgs e)
         {
             richTextBox2.Clear();
+            textBox5.Clear();
             ac = new AnalysisCode(textBox3.Text);
             ac.action();
             List<Token> tokens = new List<Token>();
             BetaTab betaTab = new BetaTab();
             tokens = ac.tokens;
-            LR rule = new LR(tokens);
+
             
             try
             {
-                //BauerZamelzon rule1 = new BauerZamelzon(tokens);
+                LR rule = new LR(tokens);
                 rule.Programm();
+                
                 foreach (Token token in tokens)
                 {
-
+                    
                     richTextBox2.AppendText(token.ToString());
                     richTextBox2.AppendText("\r\n");
+                    //BauerZamelzon rule1 = new BauerZamelzon(tokens);
+                    //textBox5.Text = rule1.MatrixShow();
                 }
-                MessageBox.Show("Разбор завершён");
+
+                MessageBox.Show("Разбор успешно завершён");
             }
             catch (Exception ex)
             {

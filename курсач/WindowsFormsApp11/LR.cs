@@ -372,6 +372,10 @@ namespace WindowsFormsApp11
                 case TokenType.EQUAL:
                     Shift();
                     break;
+                case TokenType.LPAR:
+                    while (GetLexeme(nextLex).Type != TokenType.NEWSTRING) { count++; Shift(); }
+                    GoToState(22);
+                    break;
                 case TokenType.INDENTIFIER:
                     while (GetLexeme(nextLex).Type != TokenType.NEWSTRING) { count++;Shift(); }
                     GoToState(22);
@@ -380,6 +384,7 @@ namespace WindowsFormsApp11
                     while (GetLexeme(nextLex).Type != TokenType.NEWSTRING) { count++; Shift(); }
                     GoToState(22);
                     break;
+                
                 default:
                     throw new Exception($"Ожидалось expr, но было получено {lexemStack.Peek().ToString()}. State: 16");
             }
